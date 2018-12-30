@@ -27,7 +27,7 @@ export default class Login extends Component<Props, State> {
   reg = () => {
     const { history } = this.props;
     console.log('login', this.state);
-    fetch('/api/auth/reg', {
+    fetch('/graphql', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
@@ -49,7 +49,7 @@ export default class Login extends Component<Props, State> {
   login = () => {
     const { history } = this.props;
     console.log('login', this.state);
-    fetch('/api/auth/login', {
+    fetch('/graphql', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json; charset=utf-8',

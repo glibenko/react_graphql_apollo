@@ -9,12 +9,13 @@ type Props = {
 export default class Main extends Component<Props> {
   componentDidMount() {
     const { history } = this.props;
-    fetch('/api/auth/check', {
+    fetch('/graphql', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
       },
-      body: JSON.stringify({ token: localStorage.getItem('token') }),
+      // body: JSON.stringify({ token: localStorage.getItem('token') }),
+      body: JSON.stringify({query: "{ hello }"}),
     })
       .then((res) => {
         if (res && res.status !== 200) {
