@@ -54,13 +54,13 @@ app.use(passport.session());
 
 const context = {
   greeting: 'Hello world!',
-}
+};
 
 app.use('/graphql', graphqlHTTP({
   schema,
   rootValue: resolvers,
   graphiql: true,
-  context,
+  // context,
 }));
 
 app.set('views', path.join(__dirname, 'views'));

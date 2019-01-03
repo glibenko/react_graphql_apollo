@@ -12,13 +12,31 @@
 const { buildSchema } = require('graphql');
 
 module.exports = buildSchema(`
-  type login {
-    name: String
-    password: String!
-    author: String!
+  type Login {
+    Error: Int,
+    message: String,
+  }
+
+  type Query {
+    login(name: String, password: String): Login,
+    hello: String
   }
 `);
 
+// type Query = buildSchema(`
+//   type Login {
+//     hello: String
+//   }
+// `);
+
+//   type Hello = {
+//     login: Query
+//   }
+
+// module.exports = {
+//   query: Query,
+//   Login: Query
+// }
 
 // import ToDoMongo from '../mongoose/user';
 

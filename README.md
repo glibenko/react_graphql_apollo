@@ -1,21 +1,21 @@
-### React authorization
+### React GraphQL
 
-This app shows us authorization
+This app shows us GraphQL instead Rest API
 
 This App using:
 
 * React
 * Express
+* GraphQL
+* Mongodb
 * Webpack
 * ESlint
 * Babel
-* Mongodb
-
 
 ### Fast start
 ```sh
 # Clone the repository
-$ git clone https://github.com/njiyto/react_authorization
+$ git clone https://github.com/njiyto/react_graphql
 
 # Install dependencies
 $ npm install
