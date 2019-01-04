@@ -14,11 +14,19 @@ export default class Main extends Component<Props> {
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
       },
+      // {check(token: localStorage.getItem('token')){error,message}}
       // body: JSON.stringify({ token: localStorage.getItem('token') }),
-      body: JSON.stringify({query: "{ hello }"}),
+      body: JSON.stringify({query: `{check(token: "${localStorage.getItem('token')}"){error,message}}`}),
     })
       .then((res) => {
         if (res && res.status !== 200) {
+          history.push('/login');
+        }
+        return res.json();
+      })
+      .then((resp) => {
+        console.log('data', resp.data)
+        if (resp.data.check.error !== 0) {
           history.push('/login');
         }
       });
@@ -26,7 +34,15 @@ export default class Main extends Component<Props> {
 
   logout = () => {
     const { history } = this.props;
-    fetch('/api/auth/logout')
+    fetch('/graphql', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+      },
+      // {check(token: localStorage.getItem('token')){error,message}}
+      // body: JSON.stringify({ token: localStorage.getItem('token') }),
+      body: JSON.stringify({query: '{logout{error,message}}'}),
+    })
       .then((res) => {
         localStorage.clear();
         if (res && res.status === 401) {

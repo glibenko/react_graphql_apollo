@@ -8,25 +8,11 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const helmet = require('helmet');
 const graphqlHTTP = require('express-graphql');
-const { buildSchema } = require('graphql');
 
-const schema = require('./graphql/schema')
-const resolvers = require('./graphql/resolvers')
+const schema = require('./graphql/schema');
+const resolvers = require('./graphql/resolvers');
 
 const mongoExpressConfig = require('../mongo_express.config');
-
-// const schema = buildSchema(`
-//   type Query {
-//     hello: String
-//   }
-// `);
-
-// const root = {
-//   hello: () => {
-//     return 'Hello world!';
-//   },
-// };
-
 
 mongoose.connect('mongodb://localhost:27017/db', { useNewUrlParser: true });
 
@@ -51,10 +37,6 @@ app.use(passport.session());
 // const api = require('./api');
 
 // app.use('/api', api);
-
-const context = {
-  greeting: 'Hello world!',
-};
 
 app.use('/graphql', graphqlHTTP({
   schema,

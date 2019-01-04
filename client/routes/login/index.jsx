@@ -26,44 +26,49 @@ export default class Login extends Component<Props, State> {
 
   reg = () => {
     const { history } = this.props;
+    const { name, password, passwordConf } = this.state;
     console.log('login', this.state);
     fetch('/graphql', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
       },
-      body: JSON.stringify(this.state),
+      // body: JSON.stringify(this.state),
+      body: JSON.stringify({ query: `{reg(name:"${name}", password:"${password}", passwordConf:"${passwordConf}"){error,message,token}}` }),
     })
       .then((res: Object) => res.json())
-      .then((data: Object) => {
-        if (data.error === 0) {
-          localStorage.setItem('token', data.token);
+      .then((resp: Object) => {
+        if (resp.data.reg.error === 0) {
+          localStorage.setItem('token', resp.data.reg.token);
           history.push('/main');
         }
-        if (data.error === 1000) {
-          this.setState({ answear: data.message }) 
+        if (resp.data.reg.error === 1000) {
+          this.setState({ answear: resp.data.reg.message }) 
         }
       });
   }
 
   login = () => {
     const { history } = this.props;
+    const { name, password } = this.state;
+
     console.log('login', this.state);
     fetch('/graphql', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
       },
-      body: JSON.stringify(this.state),
+      // body: JSON.stringify(this.state),
+      body: JSON.stringify({ query: `{login(name:"${name}", password:"${password}"){error,message,token}}` }),
     })
       .then(res => res.json())
-      .then((data) => {
-        if (data.error === 0) {
-          localStorage.setItem('token', data.token);
+      .then((resp) => {
+        if (resp.data.login.error === 0) {
+          localStorage.setItem('token', resp.data.login.token);
           history.push('/main');
         }
-        if (data.error === 1000) {
-          this.setState({ answear: data.message }) 
+        if (resp.data.login.error === 1000) {
+          this.setState({ answear: resp.data.login.message }) 
         }
       });
   }
