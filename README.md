@@ -1,12 +1,13 @@
-### React GraphQL
+### React GraphQL Apollo
 
-This app shows us GraphQL instead Rest API
+This app show us how to use graphQL apollo with react
 
 This App using:
 
 * React
 * Express
 * GraphQL
+* Apollo
 * Mongodb
 * Webpack
 * ESlint
@@ -15,7 +16,7 @@ This App using:
 ### Fast start
 ```sh
 # Clone the repository
-$ git clone https://github.com/njiyto/react_graphql
+$ git clone https://github.com/njiyto/react_graphql_apollo.git
 
 # Install dependencies
 $ npm install
