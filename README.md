@@ -2,6 +2,10 @@
 
 This app show us how to use graphQL apollo with react
 
+### Conclusion:
+I think GraphQL without Apollo more usable and easier for using.
+I prefer to use Redux severally of Apollo.
+
 This App using:
 
 * React
